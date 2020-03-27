@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 import * as yup from 'yup';
 import { v4 as uuid } from 'uuid';
+import axios from 'axios';
 
 // style imports
 import {Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap'
@@ -11,7 +12,7 @@ import PizzaFinalize from './PizzaFinalize';
 import Order from './Order';
 
 const defaultPizza = {
-  pizzaName: 'Thin Crust',
+  pizzaName: '',
   sizeChoice: 'Large',
   toppingOne: false,
   toppingTwo: false,
@@ -27,7 +28,7 @@ const defaultPizza = {
 
 // yup schema
 const pizzaSchema = yup.object().shape({
-  pizzaName: yup.string().min(2).required('You need a name of at least 2 chars'), // must be at least 2 chars
+  pizzaName: yup.string().min(2, "Your name must be at least 2 characters").required('You need to enter a name'), // at least 2 chars
   // sizeChoice: yup.string().required('You must select a size'),
   sizeChoice: yup.string(),
   toppingOne: yup.boolean(),
@@ -43,11 +44,11 @@ const pizzaSchema = yup.object().shape({
 });
 
 
-
 function Pizza(props) {
 
   const [pizza, setPizza] = useState(defaultPizza);
   const [order, setOrder] = useState(null);
+  const [orderResult, setOrderResult] = useState();
 
   const [errors, setErrors] = useState({
     pizzaName: "",
@@ -78,15 +79,35 @@ function Pizza(props) {
 
   const onSubmitHandler = event => {
     event.preventDefault();
+    // run client-side valization
+    // create post object
 
     let newOrder = {
       id: uuid(),
       pizza: pizza,
-      success: true,
-      message: "Thank you for your purhcase!",
-    };
-    // post order to server; get UID
+    }
     setOrder(newOrder);
+
+    let testObject = {
+      'email': 'bob@mail.net',
+      'password': 'password'
+    }
+    // submit post, wait for result
+    axios
+      .post('https://reqres.in/api/register', testObject)
+      .then(res => {
+        let newOrderResult = {
+          orderId: res.data['id'],
+          orderData: order,
+          success: true,
+          message: "Thank you for your purhcase!",
+        };
+        // populate result in state
+        setOrderResult(newOrderResult);
+      })
+      .catch(err => {
+        // do something
+      })
   }
 
   const validateChange = e => {
