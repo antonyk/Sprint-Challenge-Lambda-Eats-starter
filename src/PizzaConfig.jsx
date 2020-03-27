@@ -6,26 +6,16 @@ import * as yup from 'yup';
 // style imports
 import {Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap'
 
-const orderSchema = yup.object().shape({
-  name: yup.string().required('You need to enter a name'),
-  email: yup.string().email().required('You must enter an email address'),
-  password: yup.string().required('You must enter a password'),
-});
-
-const orderMessages = {}
-const validationObject = {
-  yupSchema: orderSchema,
-  messages: orderMessages
-}
-
 
 function PizzaConfig(props) {
 
   return (
     <>
       <FormGroup>
-        <Label for='nameInput'>Name</Label>
-        <Input type='text' name='nameInput' id='nameInput' />
+        <Label for='pizzaName'>Name</Label>
+        <Input type='text' name='pizzaName' id='pizzaName'
+          onChange={props.onChange}
+          value={props.order.name} />
       </FormGroup>
       <FormGroup>
         <Label for='sizeChoice'>
@@ -45,34 +35,46 @@ function PizzaConfig(props) {
         </Row>
         <Row>
           <Col>
-            <Input type='checkbox' name='toppingOne' id='toppingOne' />
+            <Input type='checkbox' name='toppingOne' id='toppingOne'
+              onChange={props.onChange}
+              checked={props.order.toppingOne} />
             <Label for='toppingOne'>Topping 1</Label>
           </Col>
           <Col>
-            <Input type='checkbox' name='toppingTwo' id='toppingTwo' />
+            <Input type='checkbox' name='toppingTwo' id='toppingTwo'
+              onChange={props.onChange}
+              checked={props.order.toppingTwo} />
             <Label for='toppingTwo'>Topping 2</Label>
           </Col>
         </Row>
         <Row>
           <Col>
-            <Input type='checkbox' name='toppingThree' id='toppingThree' />
+            <Input type='checkbox' name='toppingThree' id='toppingThree'
+              onChange={props.onChange}
+              checked={props.order.toppingThree} />
             <Label for='toppingThree'>Topping 3</Label>
           </Col>
           <Col>
-            <Input type='checkbox' name='toppingFour' id='toppingFour' />
+            <Input type='checkbox' name='toppingFour' id='toppingFour'
+              onChange={props.onChange}
+              checked={props.order.toppingFour} />
             <Label for='toppingFour'>Topping 4</Label>
           </Col>
         </Row>
       </FormGroup>
       <FormGroup>
         <Label for='isGlutenToggle'>Gluten Free?</Label>
-        <CustomInput type='switch' name='isGlutenToggle' id='isGlutenToggle' />
+        <CustomInput type='switch' name='isGlutenToggle' id='isGlutenToggle'
+          onChange={props.onChange}
+          checked={props.order.isGlutenToggle} />
           {/* checked={props.state.isTermsOn}
           onChange={props.onChange} /> */}
       </FormGroup>
       <FormGroup>
         <Label for='instructions'>Special Instructions</Label>
-        <Input name='instructions' id='instructions' type='text'></Input>
+        <Input name='instructions' id='instructions' type='text'
+          onChange={props.onChange}
+          value={props.order.instructions} />
       </FormGroup>
       <FormGroup>
         <Link to='/pizza/cart'>
