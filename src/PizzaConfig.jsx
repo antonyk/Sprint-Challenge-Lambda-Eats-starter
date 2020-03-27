@@ -16,6 +16,7 @@ function PizzaConfig(props) {
         <Input type='text' name='pizzaName' id='pizzaName'
           onChange={props.onChange}
           value={props.pizza.name} />
+        {props.errors.pizzaName.length > 0 ? <p className='errors'>{props.errors.pizzaName}</p> : null }
       </FormGroup>
       <FormGroup>
         <Label for='sizeChoice'>

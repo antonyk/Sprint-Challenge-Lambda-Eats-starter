@@ -17,7 +17,7 @@ function HomePage() {
         </p>
         <p>
           <Link to={`/pizza`}>
-            <Button color='primary'>Pizza</Button>
+            <Button color='primary' type='button'>Pizza</Button>
           </Link>
         </p>
       </Jumbotron>
