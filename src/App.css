@@ -18,9 +18,9 @@
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: left;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
   font-size: calc(10px + 2vmin);
   color: white;
   margin-bottom: 5vh;
