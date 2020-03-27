@@ -12,8 +12,16 @@ import HeaderComponent from './Header'
 import HomePage from './Home'
 import Pizza from './Pizza'
 
+const userData = {
+  name: "John Doe",
+  address: "123 Street, Here Ville, NY",
+  payment: "Mastercard",
+}
+
 
 const App = () => {
+
+  const [user, setUser] = useState(userData);
 
   return (
     <div className="App">
@@ -21,7 +29,7 @@ const App = () => {
       <Container className='themed-container' fluid={true}>
         <Switch>
           <Route path='/pizza'>
-            <Pizza />
+            <Pizza user={user} />
             {/* <Pizza state={signupFormState} onChange={onChangeHandler} onSubmit={onSubmitHandler} /> */}
           </Route>
           <Route path='/'>
