@@ -29,6 +29,17 @@ const defaultPizza = {
 const pizzaSchema = yup.object().shape({
   pizzaName: yup.string().min(2).required('You need a name of at least 2 chars'), // must be at least 2 chars
   // sizeChoice: yup.string().required('You must select a size'),
+  sizeChoice: yup.string(),
+  toppingOne: yup.boolean(),
+  toppingTwo: yup.boolean(),
+  toppingThree: yup.boolean(),
+  toppingFour: yup.boolean(),
+  // toppings: [],
+  isGlutenToggle: yup.boolean(),
+  instructions: yup.string(),
+  // pizza: null,
+  isPickupOn: yup.boolean(),
+  isUtensilsOn: yup.boolean(),
 });
 
 
@@ -119,8 +130,13 @@ function Pizza(props) {
     <Row xs='1' sm='3'>
       <Col></Col>
       <Col>
+        <h4>Pizza data</h4>
         <code>
           {JSON.stringify(pizza)}
+        </code>
+        <h4>Order data</h4>
+        <code>
+          {JSON.stringify(order)}
         </code>
       </Col>
       <Col></Col>

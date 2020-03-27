@@ -32,7 +32,7 @@ function PizzaFinalize(props) {
         </Col>
         <Col>
           <Link to='/order'>
-            <Button disabled={false} type='submit'>Place Order</Button>
+            <Button id='placeOrderBtn' disabled={false} type='submit'>Place Order</Button>
           </Link>
         </Col>
       </Row>
