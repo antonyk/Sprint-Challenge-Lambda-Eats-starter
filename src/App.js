@@ -6,10 +6,11 @@ import { Route, Link, useRouteMatch, Switch } from 'react-router-dom'
 import './App.css';
 import { Container, Row, Col, Button } from 'reactstrap'
 // import SignupPage from './components/SignupPage'
-// import HomePage from './components/HomePage'
 
 // import components
 import HeaderComponent from './Header'
+import HomePage from './Home'
+import Pizza from './Pizza'
 
 
 const App = () => {
@@ -20,10 +21,11 @@ const App = () => {
       <Container className='themed-container' fluid={true}>
         <Switch>
           <Route path='/pizza'>
-            {/* <SignupPage state={signupFormState} onChange={onChangeHandler} onSubmit={onSubmitHandler} /> */}
+            <Pizza />
+            {/* <Pizza state={signupFormState} onChange={onChangeHandler} onSubmit={onSubmitHandler} /> */}
           </Route>
           <Route path='/'>
-            {/* <HomePage /> */}
+            <HomePage />
           </Route>
         </Switch>
       </Container>
@@ -34,8 +36,3 @@ const App = () => {
 };
 export default App;
 
-
-
-function Pizza() {
-
-}
