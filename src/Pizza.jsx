@@ -7,21 +7,12 @@ import { v4 as uuid } from 'uuid';
 // style imports
 import {Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap'
 import PizzaConfig from './PizzaConfig';
-import Cart from './Cart';
+import PizzaFinalize from './PizzaFinalize';
+import Order from './Order';
 
-const orderSchema = yup.object().shape({
-  name: yup.string().required('You need to enter a name'),
-  email: yup.string().email().required('You must enter an email address'),
-  password: yup.string().required('You must enter a password'),
-});
+// import Cart from './Cart';
 
-const orderMessages = {}
-const validationObject = {
-  yupSchema: orderSchema,
-  messages: orderMessages
-}
-
-const defaultOrder = {
+const defaultPizza = {
   pizzaName: 'Thin Crust',
   sizeChoice: 'Large',
   toppingOne: false,
@@ -39,11 +30,12 @@ const defaultOrder = {
 
 function Pizza(props) {
 
-  const [order, setOrder] = useState(defaultOrder);
+  const [pizza, setPizza] = useState(defaultPizza);
+  const [order, setOrder] = useState(null);
 
   const onChangeHandler = event => {
-    setOrder({
-      ...order,
+    setPizza({
+      ...pizza,
       [event.target.name]:
         ((event.target.type === 'checkbox') || (event.target.type === 'switch')) ?  event.target.checked : event.target.value,
     });
@@ -51,36 +43,49 @@ function Pizza(props) {
 
   const onSubmitHandler = event => {
     event.preventDefault();
+
+    let newOrder = {
+      id: uuid(),
+      pizza: pizza,
+      success: true,
+      message: "Thank you for your purhcase!",
+    };
     // post order to server; get UID
-    // id: uuid()
+    setOrder(newOrder);
   }
+
 
   return (
     <>
-    <Form name='pizzaOrderForm' id='pizzaOrderForm' method='post' onSubmit={onSubmitHandler}>
-
-      <Row xs='1' sm='3'>
-        <Col></Col>
-        <Col>
-
-          <Switch>
-            <Route path='/pizza/cart'>
-              <Cart onChange={onChangeHandler} order={order} />
-            </Route>
-            <Route path='/pizza'>
-              <PizzaConfig onChange={onChangeHandler} order={order} />
-            </Route>
-          </Switch>
-
-        </Col>
-        <Col></Col>
-      </Row>
-    </Form>
     <Row xs='1' sm='3'>
-    <Col></Col>
+      <Col></Col>
+      <Col>
+        <Route exact path='/pizza'>
+          <Link to='/pizza/config'>
+            <Button disabled={false} type='button'>Begin</Button>
+          </Link>
+        </Route>
+        <Route path='/pizza'>
+          <Form name='pizzaOrderForm' id='pizzaOrderForm' method='post' onSubmit={onSubmitHandler}>
+            <Route path='/pizza/config'>
+              <PizzaConfig onChange={onChangeHandler} pizza={pizza} />
+            </Route>
+            <Route path='/pizza/finalize'>
+              <PizzaFinalize onChange={onChangeHandler} pizza={pizza} />
+            </Route>
+          </Form>
+        </Route>
+        <Route path='/order'>
+          <Order order={order} />
+        </Route>
+      </Col>
+      <Col></Col>
+    </Row>
+    <Row xs='1' sm='3'>
+      <Col></Col>
       <Col>
         <code>
-          {JSON.stringify(order)}
+          {JSON.stringify(pizza)}
         </code>
       </Col>
       <Col></Col>

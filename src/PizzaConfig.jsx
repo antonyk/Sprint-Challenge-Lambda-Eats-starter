@@ -15,7 +15,7 @@ function PizzaConfig(props) {
         <Label for='pizzaName'>Name</Label>
         <Input type='text' name='pizzaName' id='pizzaName'
           onChange={props.onChange}
-          value={props.order.name} />
+          value={props.pizza.name} />
       </FormGroup>
       <FormGroup>
         <Label for='sizeChoice'>
@@ -37,13 +37,13 @@ function PizzaConfig(props) {
           <Col>
             <Input type='checkbox' name='toppingOne' id='toppingOne'
               onChange={props.onChange}
-              checked={props.order.toppingOne} />
+              checked={props.pizza.toppingOne} />
             <Label for='toppingOne'>Topping 1</Label>
           </Col>
           <Col>
             <Input type='checkbox' name='toppingTwo' id='toppingTwo'
               onChange={props.onChange}
-              checked={props.order.toppingTwo} />
+              checked={props.pizza.toppingTwo} />
             <Label for='toppingTwo'>Topping 2</Label>
           </Col>
         </Row>
@@ -51,13 +51,13 @@ function PizzaConfig(props) {
           <Col>
             <Input type='checkbox' name='toppingThree' id='toppingThree'
               onChange={props.onChange}
-              checked={props.order.toppingThree} />
+              checked={props.pizza.toppingThree} />
             <Label for='toppingThree'>Topping 3</Label>
           </Col>
           <Col>
             <Input type='checkbox' name='toppingFour' id='toppingFour'
               onChange={props.onChange}
-              checked={props.order.toppingFour} />
+              checked={props.pizza.toppingFour} />
             <Label for='toppingFour'>Topping 4</Label>
           </Col>
         </Row>
@@ -66,7 +66,7 @@ function PizzaConfig(props) {
         <Label for='isGlutenToggle'>Gluten Free?</Label>
         <CustomInput type='switch' name='isGlutenToggle' id='isGlutenToggle'
           onChange={props.onChange}
-          checked={props.order.isGlutenToggle} />
+          checked={props.pizza.isGlutenToggle} />
           {/* checked={props.state.isTermsOn}
           onChange={props.onChange} /> */}
       </FormGroup>
@@ -74,10 +74,10 @@ function PizzaConfig(props) {
         <Label for='instructions'>Special Instructions</Label>
         <Input name='instructions' id='instructions' type='text'
           onChange={props.onChange}
-          value={props.order.instructions} />
+          value={props.pizza.instructions} />
       </FormGroup>
       <FormGroup>
-        <Link to='/pizza/cart'>
+        <Link to='/pizza/finalize'>
           <Button disabled={false} type='button'>Continue</Button>
         </Link>
       </FormGroup>

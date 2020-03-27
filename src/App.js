@@ -22,6 +22,7 @@ const userData = {
 const App = () => {
 
   const [user, setUser] = useState(userData);
+  // const [order, setOrder] = useState({})
 
   return (
     <div className="App">
@@ -32,6 +33,9 @@ const App = () => {
             <Pizza user={user} />
             {/* <Pizza state={signupFormState} onChange={onChangeHandler} onSubmit={onSubmitHandler} /> */}
           </Route>
+          {/* <Route path='/order'>
+            <Order />
+          </Route> */}
           <Route path='/'>
             <HomePage />
           </Route>
