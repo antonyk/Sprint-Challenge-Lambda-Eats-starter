@@ -1,29 +1,27 @@
 // core imports
 import React, { useState, useEffect } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import * as yup from 'yup';
 
 // style imports
-import {Container, Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap'
-
-const orderSchema = yup.object().shape({
-  name: yup.string().required('You need to enter a name'),
-  email: yup.string().email().required('You must enter an email address'),
-  password: yup.string().required('You must enter a password'),
-});
-
-const orderMessages = {}
-const validationObject = {
-  yupSchema: orderSchema,
-  messages: orderMessages
-}
+import {Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap'
+import PizzaConfig from './PizzaConfig';
+import Cart from './Cart';
 
 
-function Pizza() {
+function Pizza(props) {
 
   return (
-    <div>
-    </div>
+    <>
+    <Switch>
+    <Route path='/pizza/cart'>
+      <Cart />
+    </Route>
+    <Route path='/pizza'>
+      <PizzaConfig />
+    </Route>
+    </Switch>
+    </>
   )
 }
 
