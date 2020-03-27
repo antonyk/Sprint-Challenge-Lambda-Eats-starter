@@ -78,7 +78,7 @@ function PizzaConfig(props) {
       </FormGroup>
       <FormGroup>
         <Link to='/pizza/cart'>
-          <Button disabled={false} type='submit' >Continue</Button>
+          <Button disabled={false} type='button'>Continue</Button>
         </Link>
       </FormGroup>
     </>

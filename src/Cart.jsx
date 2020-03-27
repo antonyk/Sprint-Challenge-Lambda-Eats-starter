@@ -6,18 +6,6 @@ import * as yup from 'yup';
 // style imports
 import {Container, Row, Col, Button, Form, FormGroup, Label, Input, CustomInput } from 'reactstrap'
 
-const orderSchema = yup.object().shape({
-  name: yup.string().required('You need to enter a name'),
-  email: yup.string().email().required('You must enter an email address'),
-  password: yup.string().required('You must enter a password'),
-});
-
-const orderMessages = {}
-const validationObject = {
-  yupSchema: orderSchema,
-  messages: orderMessages
-}
-
 
 function Cart(props) {
 
@@ -25,18 +13,29 @@ function Cart(props) {
     <>
     <FormGroup>
       <Label for='isPickupOn'>Pick Up?</Label>
-      <CustomInput type='switch' name='isPickupOn' id='isPickupOn' />
-        {/* checked={props.state.isTermsOn}
-        onChange={props.onChange} /> */}
+      <CustomInput type='switch' name='isPickupOn' id='isPickupOn'
+        checked={props.order.isPickupOn}
+        onChange={props.onChange} />
     </FormGroup>
     <FormGroup>
       <Label for='isUtensilsOn'>Do you need utensils?</Label>
-      <CustomInput type='switch' name='isUtensilsOn' id='isUtensilsOn' />
-        {/* checked={props.state.isTermsOn}
-        onChange={props.onChange} /> */}
+      <CustomInput type='switch' name='isUtensilsOn' id='isUtensilsOn'
+        checked={props.order.isUtensilsOn}
+        onChange={props.onChange} />
     </FormGroup>
     <FormGroup>
-      <Button disabled={false} type='submit' >Place Order</Button>
+      <Row>
+        <Col>
+          <Link to='/pizza'>
+          <Button disabled={false} type='button'>Back</Button>
+          </Link>
+        </Col>
+        <Col>
+          <Link to='/pizza/order'>
+            <Button disabled={false} type='submit'>Place Order</Button>
+          </Link>
+        </Col>
+      </Row>
     </FormGroup>
     </>
   )
