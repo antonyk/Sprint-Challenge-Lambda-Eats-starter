@@ -41,10 +41,25 @@ const App = () => {
           </Route>
         </Switch>
       </Container>
+      <Footer />
     </div>
   );
 
-
 };
+
+
+function Footer() {
+
+  return (
+    <footer>
+      <br />
+      <p>
+        Copyright 2020
+      </p>
+    </footer>
+  )
+}
+
+
 export default App;
 

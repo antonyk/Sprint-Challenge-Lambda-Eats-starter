@@ -15,7 +15,7 @@ function HomePage() {
       <Jumbotron>
         <h1>Fresh pizza, always on time!</h1>
         <p>
-          Get your fresh pizza from us
+          Order your fresh pizza online from us
         </p>
       </Jumbotron>
       <PizzaList />
@@ -24,28 +24,7 @@ function HomePage() {
           <Button color='primary' type='button'>Order Pizza</Button>
         </Link>
       </p> */}
-      
-      <footer>
-        <p>
-          Copyright 2020
-        </p>
-      </footer>
-      {/* <Footer /> */}
     </>
-  )
-}
-
-
-function Footer() {
-
-  return (
-    <Jumbotron>
-      <footer>
-        <p>
-          Copyright 2020
-        </p>
-      </footer>
-    </Jumbotron>
   )
 }
 
